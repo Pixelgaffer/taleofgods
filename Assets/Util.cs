@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Util : MonoBehaviour {
+namespace tog {
+	public class Util : MonoBehaviour {
 
-	public void switchToScene(string scene) {
-		Application.LoadLevel (scene);
+		public void switchToScene(string scene) {
+			Application.LoadLevel (scene);
+		}
+
 	}
-
 }

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{E102F163-EBDF-E64C-85C0-5F1E71EEA716}") = "Tale of Gods", "Assembly-CSharp-vs.csproj", "{5A99965F-C778-7C2B-6256-BB2C443ED94E}"
 EndProject
+Project("{E102F163-EBDF-E64C-85C0-5F1E71EEA716}") = "Tale of Gods", "Assembly-CSharp-Editor-vs.csproj", "{E17BDC5A-07A2-7A73-B296-3E60549D185E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{5A99965F-C778-7C2B-6256-BB2C443ED94E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A99965F-C778-7C2B-6256-BB2C443ED94E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A99965F-C778-7C2B-6256-BB2C443ED94E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E17BDC5A-07A2-7A73-B296-3E60549D185E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E17BDC5A-07A2-7A73-B296-3E60549D185E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E17BDC5A-07A2-7A73-B296-3E60549D185E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E17BDC5A-07A2-7A73-B296-3E60549D185E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-													GlobalSection(MonoDevelopProperties) = preSolution
+																	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
