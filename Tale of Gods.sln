@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{E102F163-EBDF-E64C-85C0-5F1E71EEA716}") = "Tale of Gods", "Assembly-CSharp-firstpass.csproj", "{F4C5FE5E-19B2-3A24-6457-33F50D20BBA7}"
+EndProject
 Project("{E102F163-EBDF-E64C-85C0-5F1E71EEA716}") = "Tale of Gods", "Assembly-CSharp.csproj", "{5A99965F-C778-7C2B-6256-BB2C443ED94E}"
 EndProject
 Project("{E102F163-EBDF-E64C-85C0-5F1E71EEA716}") = "Tale of Gods", "Assembly-CSharp-Editor.csproj", "{E17BDC5A-07A2-7A73-B296-3E60549D185E}"
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4C5FE5E-19B2-3A24-6457-33F50D20BBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C5FE5E-19B2-3A24-6457-33F50D20BBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C5FE5E-19B2-3A24-6457-33F50D20BBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C5FE5E-19B2-3A24-6457-33F50D20BBA7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5A99965F-C778-7C2B-6256-BB2C443ED94E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5A99965F-C778-7C2B-6256-BB2C443ED94E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A99965F-C778-7C2B-6256-BB2C443ED94E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,7 +29,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																			GlobalSection(MonoDevelopProperties) = preSolution
+																					GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
