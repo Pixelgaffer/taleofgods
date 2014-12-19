@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Chat.cs" />
      <Compile Include="Assets\MultiplayerManager.cs" />
      <Compile Include="Assets\Util.cs" />
  <Reference Include="UnityEngine.UI">
