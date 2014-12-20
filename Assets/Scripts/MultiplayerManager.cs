@@ -45,10 +45,12 @@ public class MultiplayerManager : MonoBehaviour {
 
 	public void LogInCallback (LoginResult result) {
 		Debug.Log (result.PlayFabId);
+		Application.LoadLevel ("mainmenu");
 	}
 
 	public void RegisterCallback (RegisterPlayFabUserResult result) {
 		Debug.Log (result.PlayFabId);
+		Application.LoadLevel ("mainmenu");
 	}
 
 	public void PlayFabError(PlayFabError pfError) {
