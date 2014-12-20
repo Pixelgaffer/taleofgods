@@ -183,6 +183,7 @@ public class MultiplayerManager : MonoBehaviour {
 		RoomOptions options = new RoomOptions ();
 		options.maxPlayers = maxPlayers;
 		options.customRoomPropertiesForLobby = new String[] {"key"};
+		options.customRoomProperties = new Hashtable ();
 		options.customRoomProperties.Add("key", key);
 		PhotonNetwork.CreateRoom (name, options, null);
 	}
