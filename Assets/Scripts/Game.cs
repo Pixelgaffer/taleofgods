@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using tog;
 
 public class Game : MonoBehaviour {
 
-	public GameObject info;
+	public GameObject infoText;
 	public Button button;
+
+	private string name;
 
 	void Start () {
 		clear ();
@@ -15,13 +18,22 @@ public class Game : MonoBehaviour {
 		
 	}
 
-	public void setInfo(int maxPlayers, int players, string name) {
-		info.GetComponent<Text>().text = name + "    " + players + "/" + maxPlayers;
+	public void setInfo(RoomInfo info) {
+		infoText.GetComponent<Text>().text = info.name + "    " + info.playerCount + "/" + info.maxPlayers;
 		button.interactable = true;
+		name = info.name;
 	}
 
 	public void clear() {
-		info.GetComponent<Text> ().text = "-";
+		infoText.GetComponent<Text> ().text = "-";
 		button.interactable = false;
+		name = null;
+	}
+
+	public void JoinButton() {
+		if (name == null) {
+			return;
+		}
+		GameObject.Find ("Util").GetComponent<Util> ().setJoinRoom (name);
 	}
 }

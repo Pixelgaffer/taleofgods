@@ -25,11 +25,11 @@ public class MultiplayerManager : MonoBehaviour {
 		InputField username = FindGameObject<InputField> ("Username");
 		InputField password = FindGameObject<InputField> ("Password");
 		if (username.text.Length <= 5) {
-			FindGameObject<Text>("Error").text = "Username has to be at least 5 characters long!";
+			error("Username has to be at least 5 characters long!");
 			return;
 		}
 		if (password.text.Length <= 5) {
-			FindGameObject<Text>("Error").text = "Password has to be at least 5 characters long!";
+			error("Password has to be at least 5 characters long!");
 			return;
 		}
 		LogIn (username.text, password.text);
@@ -51,14 +51,13 @@ public class MultiplayerManager : MonoBehaviour {
 		Debug.Log (result.PlayFabId);
 	}
 
-	public void PlayFabError(PlayFabError error) {
-		if (error == null || error.ErrorMessage == null) {
-			Debug.Log ("An unknown Error occured!");
-			FindGameObject<Text>("Error").text = "An unknown Error occured!";
+	public void PlayFabError(PlayFabError pfError) {
+		if (pfError == null || pfError.ErrorMessage == null) {
+			error("An unknown Error occured!");
 			return;
 		}
-		Debug.Log (error.ErrorMessage);
-		FindGameObject<Text>("Error").text = error.ErrorMessage;
+		Debug.Log (pfError.ErrorMessage);
+		error(pfError.ErrorMessage);
 	}
 
 	public void RegisterUser () {
@@ -66,20 +65,20 @@ public class MultiplayerManager : MonoBehaviour {
 		InputField password = FindGameObject<InputField> ("Password");
 		InputField password2 = FindGameObject<InputField> ("Password2");
 		InputField email = FindGameObject<InputField> ("Email");
-		if (username.text.Length <= 5) {
-			FindGameObject<Text>("Error").text = "Username has to be at least 5 characters long!";
+		if (username.text.Length < 5) {
+			error("Username has to be at least 5 characters long!");
 			return;
 		}
-		if (password.text.Length <= 5) {
-			FindGameObject<Text>("Error").text = "Password has to be at least 5 characters long!";
+		if (password.text.Length < 5) {
+			error("Password has to be at least 5 characters long!");
 			return;
 		}
 		if (!password2.text.Equals (password.text)) {
-			FindGameObject<Text>("Error").text = "Passwords have to be the same!";
+			error("Passwords have to be the same!");
 			return;
 		}
 		if (!IsValidEmail (email.text)) {
-			FindGameObject<Text>("Error").text = "The Email entered is not valid!";
+			error("The Email entered is not valid!");
 			return;
 		}
 		RegisterUser (username.text, password.text, email.text);
@@ -94,7 +93,7 @@ public class MultiplayerManager : MonoBehaviour {
 		PlayFabClientAPI.RegisterPlayFabUser(request, RegisterCallback, PlayFabError);
 	}
 
-	public T FindGameObject<T>(string tag) where T : MonoBehaviour {
+	public static T FindGameObject<T>(string tag) where T : MonoBehaviour {
 		return GameObject.FindGameObjectWithTag(tag).GetComponent<T>();
 	}
 	
@@ -103,6 +102,84 @@ public class MultiplayerManager : MonoBehaviour {
 			@"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
 			@"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9][\-a-z0-9]{0,22}[a-z0-9]))$",
 			RegexOptions.IgnoreCase);
+	}
+
+	public void JoinRoom () {
+		InputField roomName = FindGameObject<InputField>("RoomName");
+		InputField roomKey = FindGameObject<InputField>("RoomKey");
+		if(roomName.text.Length < 5) {
+			error ("Room name must be at least 5 characters long!");
+			return;
+		}
+		if(roomName.text.Length > 20) {
+			error ("Room name can't be longer than 20 characters!");
+			return;
+		}
+		JoinRoom (roomName.text, roomKey.text);
+	}
+
+	public void JoinRoom(string name, string key) {
+		if (!PhotonNetwork.connectedAndReady) {
+			return;
+		}
+		foreach (RoomInfo info in PhotonNetwork.GetRoomList ()) {
+			if(info.name == name) {
+				if(!info.customProperties["key"].Equals(key)) {
+					error("Wrong Key!");
+					return;
+				}
+				PhotonNetwork.JoinRoom (name);
+				return;
+			}
+		}
+		error("This Room does not exist!");
+	}
+
+	void OnJoinedRoom() {
+		Application.LoadLevel ("lobby");
+	}
+
+	void OnPhotonJoinRoomFailed() {
+		error ("Failed to join Room!");
+	}
+
+	public void CreateRoom () {
+		InputField name = FindGameObject<InputField> ("RoomName");
+		InputField key = FindGameObject<InputField> ("RoomKey");
+		InputField maxPlayers = FindGameObject<InputField> ("MaxPlayers");
+		int maxPlayersInt = Int64.Parse(maxPlayers.text);
+		if (name.text.Length < 5) {
+			error ("Room name must be at least 5 characters long.");
+			return;
+		}
+		if (name.text.Length > 20) {
+			error ("Room name can't be longer than 20 characters.");
+			return;
+		}
+		if (maxPlayers < 1) {
+			error ("Max Players must be at least 1");
+			return;
+		}
+		if (maxPlayers > 5) {
+			error ("Max Players can't be larger than 20");
+			return;
+		}
+		CreateRoom (name.text, key.text, maxPlayersInt);
+	}
+
+	public void CreateRoom (string name, string key, int maxPlayers) {
+		if (!PhotonNetwork.connectedAndReady) {
+			return;
+		}
+		RoomOptions options = new RoomOptions ();
+		options.maxPlayers = maxPlayers;
+		options.customRoomPropertiesForLobby = new String[] {"key"};
+		options.customRoomProperties.Add("key", key);
+		PhotonNetwork.CreateRoom (name, options, null);
+	}
+
+	public void error(string error) {
+		FindGameObject<Text>("Error").text = error;
 	}
 
 }

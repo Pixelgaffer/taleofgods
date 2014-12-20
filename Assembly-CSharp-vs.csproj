@@ -152,6 +152,7 @@
      <Compile Include="Assets\PlayFabSDK\Public\PlayFabSettings.cs" />
      <Compile Include="Assets\Scripts\Chat.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
+     <Compile Include="Assets\Scripts\Games.cs" />
      <Compile Include="Assets\Scripts\MultiplayerManager.cs" />
      <Compile Include="Assets\Scripts\Util.cs" />
      <None Include="Assets\Plugins\release_history.txt" />
