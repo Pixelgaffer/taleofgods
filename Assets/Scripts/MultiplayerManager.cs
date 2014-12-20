@@ -147,7 +147,7 @@ public class MultiplayerManager : MonoBehaviour {
 		InputField name = FindGameObject<InputField> ("RoomName");
 		InputField key = FindGameObject<InputField> ("RoomKey");
 		InputField maxPlayers = FindGameObject<InputField> ("MaxPlayers");
-		int maxPlayersInt = Int64.Parse(maxPlayers.text);
+		int maxPlayersInt = Int32.Parse(maxPlayers.text);
 		if (name.text.Length < 5) {
 			error ("Room name must be at least 5 characters long.");
 			return;
@@ -156,11 +156,11 @@ public class MultiplayerManager : MonoBehaviour {
 			error ("Room name can't be longer than 20 characters.");
 			return;
 		}
-		if (maxPlayers < 1) {
+		if (maxPlayersInt < 1) {
 			error ("Max Players must be at least 1");
 			return;
 		}
-		if (maxPlayers > 5) {
+		if (maxPlayersInt > 5) {
 			error ("Max Players can't be larger than 20");
 			return;
 		}
