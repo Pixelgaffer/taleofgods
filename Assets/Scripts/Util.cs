@@ -37,6 +37,10 @@ namespace tog {
 			getMM ().JoinRoom (joinName, joinKey.text);
 		}
 
+		public void CreateRoom () {
+			getMM ().CreateRoom ();
+		}
+
 	}
 
 }

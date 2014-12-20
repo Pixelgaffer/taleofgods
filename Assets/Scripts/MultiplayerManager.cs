@@ -141,8 +141,14 @@ public class MultiplayerManager : MonoBehaviour {
 		Application.LoadLevel ("lobby");
 	}
 
-	void OnPhotonJoinRoomFailed() {
+	void OnPhotonJoinRoomFailed(object[] codeAndMsg) {
 		error ("Failed to join Room!");
+		Debug.LogError (codeAndMsg[1]);
+	}
+
+	void OnPhotonCreateRoomFailed(object[] codeAndMsg) {
+		error("Failed to create Room!");
+		Debug.LogError (codeAndMsg[1]);
 	}
 
 	public void CreateRoom () {
@@ -163,7 +169,7 @@ public class MultiplayerManager : MonoBehaviour {
 			return;
 		}
 		if (maxPlayersInt > 5) {
-			error ("Max Players can't be larger than 20");
+			error ("Max Players can't be larger than 5");
 			return;
 		}
 		CreateRoom (name.text, key.text, maxPlayersInt);
@@ -171,6 +177,7 @@ public class MultiplayerManager : MonoBehaviour {
 
 	public void CreateRoom (string name, string key, int maxPlayers) {
 		if (!PhotonNetwork.connectedAndReady) {
+			Debug.LogError ("Photon not ready yet");
 			return;
 		}
 		RoomOptions options = new RoomOptions ();
@@ -178,6 +185,10 @@ public class MultiplayerManager : MonoBehaviour {
 		options.customRoomPropertiesForLobby = new String[] {"key"};
 		options.customRoomProperties.Add("key", key);
 		PhotonNetwork.CreateRoom (name, options, null);
+	}
+
+	void OnCreatedRoom () {
+		Debug.Log ("Created Room!");
 	}
 
 	public void error(string error) {
