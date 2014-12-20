@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using ExitGames.Client.Photon;
 using System;
-using System.Collections;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using PlayFab;
