@@ -5,8 +5,8 @@ using System;
 
 public class Games : MonoBehaviour {
 
-	public GameObject nextPageButton;
-	public GameObject prevPageButton;
+	public Button nextPageButton;
+	public Button prevPageButton;
 
 	private int page = 1;
 	private GameObject[] gamePanels;
@@ -19,7 +19,7 @@ public class Games : MonoBehaviour {
 	void OnJoinedLobby() {
 		StartCoroutine ("UpdateGameRooms");
 		if (PhotonNetwork.GetRoomList ().Length > gamePanels.Length) {
-			nextPageButton.SetActive (true);
+			nextPageButton.interactable = true;
 		}
 	}
 
@@ -60,14 +60,14 @@ public class Games : MonoBehaviour {
 			page = getPages ();
 		}
 		if (page == 1) {
-			prevPageButton.SetActive (false);
+			prevPageButton.interactable = false;
 		} else {
-			prevPageButton.SetActive (true);
+			prevPageButton.interactable = true;
 		}
 		if (page == getPages ()) {
-			nextPageButton.SetActive (false);
+			nextPageButton.interactable = false;
 		} else {
-			nextPageButton.SetActive (true);
+			nextPageButton.interactable = true;
 		}
 	}
 }

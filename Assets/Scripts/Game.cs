@@ -8,7 +8,7 @@ public class Game : MonoBehaviour {
 	public GameObject infoText;
 	public Button button;
 
-	private string name;
+	new private string name;
 
 	void Start () {
 		clear ();
