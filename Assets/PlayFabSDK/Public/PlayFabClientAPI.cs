@@ -2,6 +2,7 @@ using System;
 using PlayFab.Serialization.JsonFx;
 using PlayFab.ClientModels;
 using PlayFab.Internal;
+using UnityEngine;
 
 namespace PlayFab
 {
@@ -324,6 +325,7 @@ namespace PlayFab
 					}
 				}
 			};
+			Debug.Log (PlayFabSettings.GetURL()+"/Client/RegisterPlayFabUser");
 			PlayFabHTTP.Post(PlayFabSettings.GetURL()+"/Client/RegisterPlayFabUser", serializedJSON, null, null, callback);
 		}
 		
