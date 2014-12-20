@@ -39,7 +39,7 @@ public class Games : MonoBehaviour {
 	}
 
 	public int getPages() {
-		return (int) Math.Ceiling(PhotonNetwork.GetRoomList ().Length * 1.0 / gamePanels.Length);
+		return (int) Math.Max (Math.Ceiling(PhotonNetwork.GetRoomList ().Length * 1.0 / gamePanels.Length), 1);
 	}
 
 	public void nextPage() {
