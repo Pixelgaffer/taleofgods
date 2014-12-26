@@ -14,7 +14,7 @@ public class MultiplayerManager : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+        
 	}
 
 	void Awake() {
@@ -185,6 +185,7 @@ public class MultiplayerManager : MonoBehaviour {
 		options.customRoomPropertiesForLobby = new String[] {"key"};
 		options.customRoomProperties = new Hashtable ();
 		options.customRoomProperties.Add("key", key);
+        options.customRoomProperties.Add("started", false);
 		PhotonNetwork.CreateRoom (name, options, null);
 	}
 
@@ -195,5 +196,10 @@ public class MultiplayerManager : MonoBehaviour {
 	public void error(string error) {
 		FindGameObject<Text>("Error").text = error;
 	}
+
+    [RPC]
+    public void StartGameRPC() {
+        Application.LoadLevel("game");
+    }
 
 }

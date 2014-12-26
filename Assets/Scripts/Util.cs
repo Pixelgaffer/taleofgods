@@ -6,6 +6,16 @@ namespace tog {
 
 	public class Util : MonoBehaviour {
 
+        public static Util getUtil() {
+            GameObject util = GameObject.FindGameObjectWithTag("Util");
+            if (util == null) {
+                return null;
+            }
+            return util.GetComponent<Util>();
+        }
+
+        public GameObject multiplayerManager;
+
 		private string joinName;
 
 		public void switchToScene(string scene) {
@@ -13,7 +23,11 @@ namespace tog {
 		}
 
 		public MultiplayerManager getMM() {
-			return GameObject.FindGameObjectWithTag ("MultiplayerManager").GetComponent<MultiplayerManager>();
+            GameObject mm = GameObject.FindGameObjectWithTag ("MultiplayerManager");
+            if(mm == null) {
+                mm = (GameObject) Instantiate(multiplayerManager);
+            }
+			return mm.GetComponent<MultiplayerManager>();
 		}
 
 		public void LogIn() {

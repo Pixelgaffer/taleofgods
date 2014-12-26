@@ -150,10 +150,15 @@
      <Compile Include="Assets\PlayFabSDK\Public\PlayFabData.cs" />
      <Compile Include="Assets\PlayFabSDK\Public\PlayFabErrors.cs" />
      <Compile Include="Assets\PlayFabSDK\Public\PlayFabSettings.cs" />
+     <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Chat.cs" />
      <Compile Include="Assets\Scripts\Game.cs" />
      <Compile Include="Assets\Scripts\Games.cs" />
+     <Compile Include="Assets\Scripts\Map Generators\MapGenerator.cs" />
+     <Compile Include="Assets\Scripts\Map Generators\SimpleGenerator.cs" />
      <Compile Include="Assets\Scripts\MultiplayerManager.cs" />
+     <Compile Include="Assets\Scripts\Tile.cs" />
+     <Compile Include="Assets\Scripts\TileMap.cs" />
      <Compile Include="Assets\Scripts\Util.cs" />
      <None Include="Assets\Plugins\release_history.txt" />
      <None Include="Assets\PlayFabSDK\JsonFx\Readme.txt" />
